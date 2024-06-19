@@ -5,7 +5,8 @@ const ACEEPTED_ORIGINS = [
   'http://localhost:1234',
   'http://localhost:3000',
   'http://localhost:8080',
-  'http://192.168.0.17:8082'
+  'https://mcv-front.web.app',
+  'https://mcv-front.firebaseapp.com'
 ]
 
 export const corsMiddleware = ({ acceptedOrigins = ACEEPTED_ORIGINS } = {}) =>
