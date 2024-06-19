@@ -46,6 +46,7 @@ app.use(fileUpload())
 app.disable('x-powered-by')
 app.use(express.urlencoded({ extended: true }))
 
+app.get('/', (req, res) => res.json('Hello World!'))
 app.use('/login', loginRoutes)
 app.use('/admin', adminRoutes)
 app.use('/agendar', scheduleRouters)
