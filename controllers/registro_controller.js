@@ -147,9 +147,9 @@ export class RegistroController {
 
   static async updatePassword (req, res) {
     const { correo } = req.params
-    const { value: contraseña } = req.body
+    const { password } = req.body
 
-    const response = await registroModel.updatePassword({ id: correo, input: contraseña })
+    const response = await registroModel.updatePassword({ id: correo, input: password })
     if (response instanceof Error) {
       res.status(500).json({ message: 'Error interno del servidor' })
     } else {

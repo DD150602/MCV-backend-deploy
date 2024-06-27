@@ -127,7 +127,7 @@ export class registroModel {
       let res1 = null
       let res2 = null
 
-      if (password !== '') {
+      if (password !== '' && password !== undefined) {
         const saltRounds = 10
         const encryPassword = await bcrypt.hash(password, saltRounds)
         res2 = await connection.query('UPDATE usuarios SET password_usuario = ? WHERE id_usuario = UUID_TO_BIN(?)', [encryPassword, idRegistro])
