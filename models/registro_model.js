@@ -124,21 +124,19 @@ export class registroModel {
       const [[idUsuario]] = await connection.query('SELECT BIN_TO_UUID(id_usuario) id_usuario FROM usuarios WHERE correo_usuario = ?', [correo_usuario])
       const { id_usuario: idRegistro } = idUsuario
 
-      const saltRounds = 10
-      const encryPassword = await bcrypt.hash(contraseña.contraseña, saltRounds)
-
       let res1 = null
       let res2 = null
 
+      if (contraseña.contraseña !== '') {
+        const saltRounds = 10
+        const encryPassword = await bcrypt.hash(contraseña.contraseña, saltRounds)
+        res2 = await connection.query('UPDATE usuarios SET password_usuario = ? WHERE id_usuario = UUID_TO_BIN(?)', [encryPassword, idRegistro])
+      }
       if (Object.keys(data).length > 0) {
         res1 = await connection.query('UPDATE clientes SET ? WHERE id_usuario = UUID_TO_BIN(?)', [data, idRegistro])
       }
 
-      if (encryPassword !== '') {
-        res2 = await connection.query('UPDATE usuarios SET password_usuario = ? WHERE id_usuario = UUID_TO_BIN(?)', [encryPassword, idRegistro])
-      }
-
-      if ((res1 === null || res1[0].affectedRows === 0) && (res2 === null || res2[0].affectedRows === 0)) {
+      if ((res1 === null || res1[0].affectedRows === 0)) {
         throw new NotFoundUser()
       }
 
