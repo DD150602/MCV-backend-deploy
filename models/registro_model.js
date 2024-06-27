@@ -59,7 +59,7 @@ export class registroModel {
           TextPart:
             'Hola' + res[0] + ', este es un correo de verificacion para confirmar tu cuenta en MCV puedes dar click en el link para confirmar tu cuenta en el siguiente enlace.',
           HTMLPart:
-            '<h3>gracias por confiar en nosotros verifica tu cuenta aqui <a href="http://localhost:3000/verificar-cuenta?codigo_verificacion=' + secret + '">Verificacion MCV</a></h3>'
+            '<h3>gracias por confiar en nosotros verifica tu cuenta aqui <a href="https://mcv-front.web.app/verificar-cuenta?codigo_verificacion=' + secret + '">Verificacion MCV</a></h3>'
         }
       ]
     })
@@ -255,7 +255,7 @@ WHERE clientes.id_cliente = UUID_TO_BIN(?) AND estado_certificado = 1
           TextPart:
             'Hola' + res[0] + ', este es un correo para actualizar su contraseña de click en el siguiente enlace.',
           HTMLPart:
-            '<h3>Acualiza tu contraseña aqui <a href="http://localhost:3000/actualizar-password?correo_verificacion=' + correo_u + '">Acualizacion MCV</a></h3>'
+            '<h3>Acualiza tu contraseña aqui <a href="https://mcv-front.web.app/actualizar-password?correo_verificacion=' + correo_u + '">Acualizacion MCV</a></h3>'
         }
       ]
     })
