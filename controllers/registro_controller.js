@@ -100,17 +100,11 @@ export class RegistroController {
 
   static async actualizarCliente (req, res) {
     const { id } = req.params
-    const { contraseña, correo_usuario, ...data } = req.body
-    try {
-      const response = await registroModel.actualizarClientes({ contraseña, correo_usuario, id, ...data })
-      if (response instanceof Error) {
-        res.status(400).json({ error: response.message })
-      } else {
-        res.status(200).json({ message: 'Cliente actualizado exitosamente' })
-      }
-    } catch (error) {
-      res.status(500).json({ message: 'Error interno del servidor' })
-    }
+    const { password, correo_usuario, ...data } = req.body
+    const response = await registroModel.actualizarClientes({ password, correo_usuario, id, ...data })
+    if (response instanceof Error) return res.status(500).json({ message: 'Error interno del servidor' })
+
+    return res.status(200).json({ message: 'Cliente actualizado exitosamente' })
   }
 
   static async getExamen (req, res) {
